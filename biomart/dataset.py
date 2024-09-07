@@ -1,6 +1,11 @@
 from xml.etree.ElementTree import Element, SubElement, tostring, fromstring
+#from lxml import etree, html
+#import re
 import pprint
 import biomart
+
+
+pattern = r'<div class="account_holder">.*?</div>'
 
 
 class BiomartDataset(object):
@@ -273,7 +278,9 @@ class BiomartDataset(object):
         if self.verbose:
             print("[BiomartDataset] search query:\n%s" % tostring(root))
 
-        return self.server.get_request(query = tostring(root))
+        query = tostring(root)
+        print(query.decode('utf-8'))
+        return self.server.get_request(query = query).text
 
     def count(self, params = {}):
         r = self.search(params, count = True)

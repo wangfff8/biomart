@@ -38,6 +38,7 @@ class BiomartDatabase(object):
             print("[BiomartDatabase:'%s'] Fetching datasets" % self)
 
         r = self.server.get_request(type = 'datasets', mart = self.name)
+        print("[class: %s, method: fetch_datasets, url: %s]" % (self.__class__.__name__, r.url))
         for line in r.iter_lines():
             line = line.decode('utf-8')
             if line:

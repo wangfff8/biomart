@@ -33,3 +33,6 @@ nosetests.xml
 .project
 .pydevproject
 .idea
+
+# Mypy cache
+.mypy_cache

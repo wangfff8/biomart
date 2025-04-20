@@ -13,8 +13,8 @@ class BiomartServer(object):
         self._databases = {}
         self._datasets = {}
 
-        if 'martservice' not in url:
-            url += '/martservice/'
+        # if 'martservice' not in url:
+        #     url += '/martservice/'
         if not url.startswith('http://'):
             url = 'http://' + url
 
@@ -97,11 +97,12 @@ class BiomartServer(object):
             'http': self.http_proxy,
             'https': self.https_proxy
         }
+        
         url = self.url.replace("http://www.", "https://")
         if params:
-            r = requests.get(url, params = params, proxies = proxies, stream = True, allow_redirects=False)
+            r = requests.get(url, params = params, proxies = proxies, stream = True, allow_redirects=True)
         else:
-            r = requests.get(url, proxies = proxies, allow_redirects=False)
+            r = requests.get(url, proxies = proxies, allow_redirects=True)
 
         #print(f"proxies:", proxies)
         #print(self.url)
